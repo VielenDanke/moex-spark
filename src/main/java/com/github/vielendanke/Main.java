@@ -22,7 +22,7 @@ public class Main {
                 .useJobActivator(simpleJobActivator)
                 .useStorageProvider(inMemoryStorageProvider) // Uses your DB
                 .useBackgroundJobServer() // Starts background workers
-                .useDashboard(8000)       // Starts dashboard at port 8000
+                .useDashboard(Integer.parseInt(System.getenv("JOB_PORT")))       // Starts dashboard at port 8000
                 .initialize()
                 .getJobScheduler();
 
