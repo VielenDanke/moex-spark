@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Main {
 
     public static void main(String[] args) {
-        Job sparkJob = new SparkJob("MoexSparkJob");
+        SparkJob sparkJob = new SparkJob("MoexSparkJob");
 
         JobActivator simpleJobActivator = new SimpleJobActivator(sparkJob);
 
