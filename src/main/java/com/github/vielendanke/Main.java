@@ -28,7 +28,7 @@ public class Main {
         // 4. Schedule a Job
         jobScheduler.scheduleRecurrently(
                 UUID.randomUUID().toString(),
-                "0 0 * * * *",
+                System.getenv("SPARK_JOB_CRON"),
                 sparkJob::executeSparkCassandraJob
         );
 
