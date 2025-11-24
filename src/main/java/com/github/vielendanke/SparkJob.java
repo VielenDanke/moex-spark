@@ -5,7 +5,7 @@ import org.apache.spark.sql.*;
 import static org.apache.spark.sql.functions.col;
 import static org.apache.spark.sql.functions.sum;
 
-public class SparkJob {
+public class SparkJob implements Job {
 
     private final String jobName;
 
@@ -13,7 +13,7 @@ public class SparkJob {
         this.jobName = jobName;
     }
 
-    public void executeSparkCassandraJob() {
+    public void execute() {
         SparkSession spark = SparkSession.builder()
                 .appName(this.jobName)
                 .master(System.getenv("SPARK_MASTER_URL"))

@@ -2,6 +2,7 @@ package com.github.vielendanke;
 
 import org.jobrunr.configuration.JobRunr;
 import org.jobrunr.scheduling.JobScheduler;
+import org.jobrunr.server.JobActivator;
 import org.jobrunr.storage.InMemoryStorageProvider;
 
 import java.util.UUID;
@@ -11,9 +12,9 @@ import java.util.UUID;
 public class Main {
 
     public static void main(String[] args) {
-        SparkJob sparkJob = new SparkJob("MoexSparkJob");
+        Job sparkJob = new SparkJob("MoexSparkJob");
 
-        SimpleJobActivator simpleJobActivator = new SimpleJobActivator(sparkJob);
+        JobActivator simpleJobActivator = new SimpleJobActivator(sparkJob);
 
         InMemoryStorageProvider inMemoryStorageProvider = new InMemoryStorageProvider();
 
@@ -29,7 +30,7 @@ public class Main {
         jobScheduler.scheduleRecurrently(
                 UUID.randomUUID().toString(),
                 System.getenv("SPARK_JOB_CRON"),
-                sparkJob::executeSparkCassandraJob
+                sparkJob::execute
         );
 
         // 5. Keep JVM Alive
